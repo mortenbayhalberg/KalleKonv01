@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OldKalleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OldKalle.dbo.Score' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Score">
+          <Key>
+            <PropertyRef Name="Auto2" />
+            <PropertyRef Name="Placering" />
+            <PropertyRef Name="Spil1" />
+            <PropertyRef Name="Kamel_passer" />
+          </Key>
+          <Property Name="Auto1" Type="int" />
+          <Property Name="Auto2" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sesson" Type="smallint" />
+          <Property Name="Dato" Type="datetime" />
+          <Property Name="Placering" Type="real" Nullable="false" />
+          <Property Name="Spil1_spillet" Type="smallint" />
+          <Property Name="Spil1" Type="real" Nullable="false" />
+          <Property Name="Spil2_spillet" Type="smallint" />
+          <Property Name="Spil2" Type="real" />
+          <Property Name="Spil3_spillet" Type="smallint" />
+          <Property Name="Spil3" Type="real" />
+          <Property Name="Spil4_spillet" Type="smallint" />
+          <Property Name="Spil4" Type="real" />
+          <Property Name="Spil5_spillet" Type="smallint" />
+          <Property Name="Spil5" Type="real" />
+          <Property Name="Gennemsnit" Type="real" />
+          <Property Name="Kamel_passer" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OldKalle.dbo.Stam' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Stam">
+          <Key>
+            <PropertyRef Name="Stam_Auto1" />
+            <PropertyRef Name="Stam_Navn" />
+            <PropertyRef Name="Stam_Formand" />
+            <PropertyRef Name="Stam_Nastformand" />
+            <PropertyRef Name="Stam_Kasser" />
+            <PropertyRef Name="Stam_Revisor" />
+            <PropertyRef Name="Stam_Skema_ansvarlig" />
+            <PropertyRef Name="Stam_Web" />
+            <PropertyRef Name="Stam_Aktiv_medlem" />
+            <PropertyRef Name="Stam_Aresmedlem" />
+            <PropertyRef Name="Stam_Provemedlem" />
+            <PropertyRef Name="Stam_Passiv" />
+            <PropertyRef Name="Stam_Udmeldt" />
+          </Key>
+          <Property Name="Stam_Auto1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Stam_Navn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stam_init" Type="nvarchar" MaxLength="5" />
+          <Property Name="Stam_Opt_dato" Type="datetime" />
+          <Property Name="Stam_Formand" Type="bit" Nullable="false" />
+          <Property Name="Stam_Nastformand" Type="bit" Nullable="false" />
+          <Property Name="Stam_Kasser" Type="bit" Nullable="false" />
+          <Property Name="Stam_Revisor" Type="bit" Nullable="false" />
+          <Property Name="Stam_Skema_ansvarlig" Type="bit" Nullable="false" />
+          <Property Name="Stam_Web" Type="bit" Nullable="false" />
+          <Property Name="Stam_Aktiv_medlem" Type="bit" Nullable="false" />
+          <Property Name="Stam_Aresmedlem" Type="bit" Nullable="false" />
+          <Property Name="Stam_Provemedlem" Type="bit" Nullable="false" />
+          <Property Name="Stam_Passiv" Type="bit" Nullable="false" />
+          <Property Name="Stam_Udmeldt" Type="bit" Nullable="false" />
+          <Property Name="Stam_Udmeldt_dato" Type="datetime" />
+          <Property Name="Stam_E_Mail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="OldKalleModelStoreContainer">
+          <EntitySet Name="Score" EntityType="Self.Score" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Score].[Auto1] AS [Auto1], 
+    [Score].[Auto2] AS [Auto2], 
+    [Score].[Sesson] AS [Sesson], 
+    [Score].[Dato] AS [Dato], 
+    [Score].[Placering] AS [Placering], 
+    [Score].[Spil1_spillet] AS [Spil1_spillet], 
+    [Score].[Spil1] AS [Spil1], 
+    [Score].[Spil2_spillet] AS [Spil2_spillet], 
+    [Score].[Spil2] AS [Spil2], 
+    [Score].[Spil3_spillet] AS [Spil3_spillet], 
+    [Score].[Spil3] AS [Spil3], 
+    [Score].[Spil4_spillet] AS [Spil4_spillet], 
+    [Score].[Spil4] AS [Spil4], 
+    [Score].[Spil5_spillet] AS [Spil5_spillet], 
+    [Score].[Spil5] AS [Spil5], 
+    [Score].[Gennemsnit] AS [Gennemsnit], 
+    [Score].[Kamel_passer] AS [Kamel_passer]
+    FROM [dbo].[Score] AS [Score]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Stam" EntityType="Self.Stam" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Stam].[Stam_Auto1] AS [Stam_Auto1], 
+    [Stam].[Stam_Navn] AS [Stam_Navn], 
+    [Stam].[Stam_init] AS [Stam_init], 
+    [Stam].[Stam_Opt_dato] AS [Stam_Opt_dato], 
+    [Stam].[Stam_Formand] AS [Stam_Formand], 
+    [Stam].[Stam_Nastformand] AS [Stam_Nastformand], 
+    [Stam].[Stam_Kasser] AS [Stam_Kasser], 
+    [Stam].[Stam_Revisor] AS [Stam_Revisor], 
+    [Stam].[Stam_Skema_ansvarlig] AS [Stam_Skema_ansvarlig], 
+    [Stam].[Stam_Web] AS [Stam_Web], 
+    [Stam].[Stam_Aktiv_medlem] AS [Stam_Aktiv_medlem], 
+    [Stam].[Stam_Aresmedlem] AS [Stam_Aresmedlem], 
+    [Stam].[Stam_Provemedlem] AS [Stam_Provemedlem], 
+    [Stam].[Stam_Passiv] AS [Stam_Passiv], 
+    [Stam].[Stam_Udmeldt] AS [Stam_Udmeldt], 
+    [Stam].[Stam_Udmeldt_dato] AS [Stam_Udmeldt_dato], 
+    [Stam].[Stam_E_Mail] AS [Stam_E_Mail]
+    FROM [dbo].[Stam] AS [Stam]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OldKalleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Score">
+          <Key>
+            <PropertyRef Name="Auto2" />
+            <PropertyRef Name="Placering" />
+            <PropertyRef Name="Spil1" />
+            <PropertyRef Name="Kamel_passer" />
+          </Key>
+          <Property Name="Auto1" Type="Int32" />
+          <Property Name="Auto2" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sesson" Type="Int16" />
+          <Property Name="Dato" Type="DateTime" Precision="3" />
+          <Property Name="Placering" Type="Single" Nullable="false" />
+          <Property Name="Spil1_spillet" Type="Int16" />
+          <Property Name="Spil1" Type="Single" Nullable="false" />
+          <Property Name="Spil2_spillet" Type="Int16" />
+          <Property Name="Spil2" Type="Single" />
+          <Property Name="Spil3_spillet" Type="Int16" />
+          <Property Name="Spil3" Type="Single" />
+          <Property Name="Spil4_spillet" Type="Int16" />
+          <Property Name="Spil4" Type="Single" />
+          <Property Name="Spil5_spillet" Type="Int16" />
+          <Property Name="Spil5" Type="Single" />
+          <Property Name="Gennemsnit" Type="Single" />
+          <Property Name="Kamel_passer" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stam">
+          <Key>
+            <PropertyRef Name="Stam_Auto1" />
+            <PropertyRef Name="Stam_Navn" />
+            <PropertyRef Name="Stam_Formand" />
+            <PropertyRef Name="Stam_Nastformand" />
+            <PropertyRef Name="Stam_Kasser" />
+            <PropertyRef Name="Stam_Revisor" />
+            <PropertyRef Name="Stam_Skema_ansvarlig" />
+            <PropertyRef Name="Stam_Web" />
+            <PropertyRef Name="Stam_Aktiv_medlem" />
+            <PropertyRef Name="Stam_Aresmedlem" />
+            <PropertyRef Name="Stam_Provemedlem" />
+            <PropertyRef Name="Stam_Passiv" />
+            <PropertyRef Name="Stam_Udmeldt" />
+          </Key>
+          <Property Name="Stam_Auto1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Stam_Navn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stam_init" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Stam_Opt_dato" Type="DateTime" Precision="3" />
+          <Property Name="Stam_Formand" Type="Boolean" Nullable="false" />
+          <Property Name="Stam_Nastformand" Type="Boolean" Nullable="false" />
+          <Property Name="Stam_Kasser" Type="Boolean" Nullable="false" />
+          <Property Name="Stam_Revisor" Type="Boolean" Nullable="false" />
+          <Property Name="Stam_Skema_ansvarlig" Type="Boolean" Nullable="false" />
+          <Property Name="Stam_Web" Type="Boolean" Nullable="false" />
+          <Property Name="Stam_Aktiv_medlem" Type="Boolean" Nullable="false" />
+          <Property Name="Stam_Aresmedlem" Type="Boolean" Nullable="false" />
+          <Property Name="Stam_Provemedlem" Type="Boolean" Nullable="false" />
+          <Property Name="Stam_Passiv" Type="Boolean" Nullable="false" />
+          <Property Name="Stam_Udmeldt" Type="Boolean" Nullable="false" />
+          <Property Name="Stam_Udmeldt_dato" Type="DateTime" Precision="3" />
+          <Property Name="Stam_E_Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="OldKalleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Score" EntityType="Self.Score" />
+          <EntitySet Name="Stam" EntityType="Self.Stam" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OldKalleModelStoreContainer" CdmEntityContainer="OldKalleEntities">
+          <EntitySetMapping Name="Score">
+            <EntityTypeMapping TypeName="OldKalleModel.Score">
+              <MappingFragment StoreEntitySet="Score">
+                <ScalarProperty Name="Auto1" ColumnName="Auto1" />
+                <ScalarProperty Name="Auto2" ColumnName="Auto2" />
+                <ScalarProperty Name="Sesson" ColumnName="Sesson" />
+                <ScalarProperty Name="Dato" ColumnName="Dato" />
+                <ScalarProperty Name="Placering" ColumnName="Placering" />
+                <ScalarProperty Name="Spil1_spillet" ColumnName="Spil1_spillet" />
+                <ScalarProperty Name="Spil1" ColumnName="Spil1" />
+                <ScalarProperty Name="Spil2_spillet" ColumnName="Spil2_spillet" />
+                <ScalarProperty Name="Spil2" ColumnName="Spil2" />
+                <ScalarProperty Name="Spil3_spillet" ColumnName="Spil3_spillet" />
+                <ScalarProperty Name="Spil3" ColumnName="Spil3" />
+                <ScalarProperty Name="Spil4_spillet" ColumnName="Spil4_spillet" />
+                <ScalarProperty Name="Spil4" ColumnName="Spil4" />
+                <ScalarProperty Name="Spil5_spillet" ColumnName="Spil5_spillet" />
+                <ScalarProperty Name="Spil5" ColumnName="Spil5" />
+                <ScalarProperty Name="Gennemsnit" ColumnName="Gennemsnit" />
+                <ScalarProperty Name="Kamel_passer" ColumnName="Kamel_passer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stam">
+            <EntityTypeMapping TypeName="OldKalleModel.Stam">
+              <MappingFragment StoreEntitySet="Stam">
+                <ScalarProperty Name="Stam_Auto1" ColumnName="Stam_Auto1" />
+                <ScalarProperty Name="Stam_Navn" ColumnName="Stam_Navn" />
+                <ScalarProperty Name="Stam_init" ColumnName="Stam_init" />
+                <ScalarProperty Name="Stam_Opt_dato" ColumnName="Stam_Opt_dato" />
+                <ScalarProperty Name="Stam_Formand" ColumnName="Stam_Formand" />
+                <ScalarProperty Name="Stam_Nastformand" ColumnName="Stam_Nastformand" />
+                <ScalarProperty Name="Stam_Kasser" ColumnName="Stam_Kasser" />
+                <ScalarProperty Name="Stam_Revisor" ColumnName="Stam_Revisor" />
+                <ScalarProperty Name="Stam_Skema_ansvarlig" ColumnName="Stam_Skema_ansvarlig" />
+                <ScalarProperty Name="Stam_Web" ColumnName="Stam_Web" />
+                <ScalarProperty Name="Stam_Aktiv_medlem" ColumnName="Stam_Aktiv_medlem" />
+                <ScalarProperty Name="Stam_Aresmedlem" ColumnName="Stam_Aresmedlem" />
+                <ScalarProperty Name="Stam_Provemedlem" ColumnName="Stam_Provemedlem" />
+                <ScalarProperty Name="Stam_Passiv" ColumnName="Stam_Passiv" />
+                <ScalarProperty Name="Stam_Udmeldt" ColumnName="Stam_Udmeldt" />
+                <ScalarProperty Name="Stam_Udmeldt_dato" ColumnName="Stam_Udmeldt_dato" />
+                <ScalarProperty Name="Stam_E_Mail" ColumnName="Stam_E_Mail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

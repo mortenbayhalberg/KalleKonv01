@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NyKalleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblFrame">
+          <Key>
+            <PropertyRef Name="CN_FramePK" />
+          </Key>
+          <Property Name="CN_FramePK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CN_FrameSpilPK" Type="int" Nullable="false" />
+          <Property Name="CN_FrameNr" Type="int" Nullable="false" />
+          <Property Name="CN_FrameScore" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSpil">
+          <Key>
+            <PropertyRef Name="CN_SpilPK" />
+          </Key>
+          <Property Name="CN_SpilPK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CN_SpilSpillerPK" Type="int" Nullable="false" />
+          <Property Name="CN_SpilDato" Type="date" Nullable="false" />
+          <Property Name="CN_SpilSesson" Type="int" Nullable="false" />
+          <Property Name="CN_SpilKalleKamel" Type="bit" />
+          <Property Name="CN_SpilPlacering" Type="int" Nullable="false" />
+          <Property Name="CN_SpilGennemsnit" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSpiller">
+          <Key>
+            <PropertyRef Name="CN_SpillerPK" />
+          </Key>
+          <Property Name="CN_SpillerPK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CN_SpillerForNavn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CN_SpillerEfterNavn" Type="nvarchar" MaxLength="50" />
+          <Property Name="CN_SpillerInit" Type="nvarchar" MaxLength="10" />
+          <Property Name="CN_SpillerOptDato" Type="date" />
+          <Property Name="CN_SpillerUdMeldDato" Type="date" />
+          <Property Name="CN_SpillerFormand" Type="bit" />
+          <Property Name="CN_SpillerNastFormand" Type="bit" />
+          <Property Name="CN_SpillerKasser" Type="bit" />
+          <Property Name="CN_SpillerRevisor" Type="bit" />
+          <Property Name="CN_SpillerSkemaAnsv" Type="bit" />
+          <Property Name="CN_SpillerWebAnsv" Type="bit" />
+          <Property Name="CN_EMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="CN_AktivMedl" Type="bit" />
+          <Property Name="CN_PassivMedl" Type="bit" />
+          <Property Name="CN_ProveMedl" Type="bit" />
+        </EntityType>
+        <Association Name="FK_tblFrame_tblSpil">
+          <End Role="tblSpil" Type="Self.tblSpil" Multiplicity="1" />
+          <End Role="tblFrame" Type="Self.tblFrame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSpil">
+              <PropertyRef Name="CN_SpilPK" />
+            </Principal>
+            <Dependent Role="tblFrame">
+              <PropertyRef Name="CN_FrameSpilPK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSpil_tblSpiller">
+          <End Role="tblSpiller" Type="Self.tblSpiller" Multiplicity="1" />
+          <End Role="tblSpil" Type="Self.tblSpil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSpiller">
+              <PropertyRef Name="CN_SpillerPK" />
+            </Principal>
+            <Dependent Role="tblSpil">
+              <PropertyRef Name="CN_SpilSpillerPK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NyKalleModelStoreContainer">
+          <EntitySet Name="tblFrame" EntityType="Self.tblFrame" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSpil" EntityType="Self.tblSpil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSpiller" EntityType="Self.tblSpiller" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblFrame_tblSpil" Association="Self.FK_tblFrame_tblSpil">
+            <End Role="tblSpil" EntitySet="tblSpil" />
+            <End Role="tblFrame" EntitySet="tblFrame" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSpil_tblSpiller" Association="Self.FK_tblSpil_tblSpiller">
+            <End Role="tblSpiller" EntitySet="tblSpiller" />
+            <End Role="tblSpil" EntitySet="tblSpil" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NyKalleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblFrame">
+          <Key>
+            <PropertyRef Name="CN_FramePK" />
+          </Key>
+          <Property Name="CN_FramePK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CN_FrameSpilPK" Type="Int32" Nullable="false" />
+          <Property Name="CN_FrameScore" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblSpil" Relationship="Self.FK_tblFrame_tblSpil" FromRole="tblFrame" ToRole="tblSpil" />
+          <Property Name="CN_FrameNr" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSpil">
+          <Key>
+            <PropertyRef Name="CN_SpilPK" />
+          </Key>
+          <Property Name="CN_SpilPK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CN_SpilSpillerPK" Type="Int32" Nullable="false" />
+          <Property Name="CN_SpilDato" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CN_SpilSesson" Type="Int32" Nullable="false" />
+          <Property Name="CN_SpilKalleKamel" Type="Boolean" />
+          <Property Name="CN_SpilPlacering" Type="Int32" Nullable="false" />
+          <Property Name="CN_SpilGennemsnit" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <NavigationProperty Name="tblFrame" Relationship="Self.FK_tblFrame_tblSpil" FromRole="tblSpil" ToRole="tblFrame" />
+          <NavigationProperty Name="tblSpiller" Relationship="Self.FK_tblSpil_tblSpiller" FromRole="tblSpil" ToRole="tblSpiller" />
+        </EntityType>
+        <EntityType Name="tblSpiller">
+          <Key>
+            <PropertyRef Name="CN_SpillerPK" />
+          </Key>
+          <Property Name="CN_SpillerPK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CN_SpillerForNavn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CN_SpillerEfterNavn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CN_SpillerInit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CN_SpillerOptDato" Type="DateTime" Precision="0" />
+          <Property Name="CN_SpillerUdMeldDato" Type="DateTime" Precision="0" />
+          <Property Name="CN_SpillerFormand" Type="Boolean" />
+          <Property Name="CN_SpillerNastFormand" Type="Boolean" />
+          <Property Name="CN_SpillerKasser" Type="Boolean" />
+          <Property Name="CN_SpillerRevisor" Type="Boolean" />
+          <Property Name="CN_SpillerSkemaAnsv" Type="Boolean" />
+          <Property Name="CN_SpillerWebAnsv" Type="Boolean" />
+          <Property Name="CN_EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CN_AktivMedl" Type="Boolean" />
+          <Property Name="CN_PassivMedl" Type="Boolean" />
+          <Property Name="CN_ProveMedl" Type="Boolean" />
+          <NavigationProperty Name="tblSpil" Relationship="Self.FK_tblSpil_tblSpiller" FromRole="tblSpiller" ToRole="tblSpil" />
+        </EntityType>
+        <Association Name="FK_tblFrame_tblSpil">
+          <End Role="tblSpil" Type="Self.tblSpil" Multiplicity="1" />
+          <End Role="tblFrame" Type="Self.tblFrame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSpil">
+              <PropertyRef Name="CN_SpilPK" />
+            </Principal>
+            <Dependent Role="tblFrame">
+              <PropertyRef Name="CN_FrameSpilPK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSpil_tblSpiller">
+          <End Role="tblSpiller" Type="Self.tblSpiller" Multiplicity="1" />
+          <End Role="tblSpil" Type="Self.tblSpil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSpiller">
+              <PropertyRef Name="CN_SpillerPK" />
+            </Principal>
+            <Dependent Role="tblSpil">
+              <PropertyRef Name="CN_SpilSpillerPK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NyKalleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblFrame" EntityType="Self.tblFrame" />
+          <EntitySet Name="tblSpil" EntityType="Self.tblSpil" />
+          <EntitySet Name="tblSpiller" EntityType="Self.tblSpiller" />
+          <AssociationSet Name="FK_tblFrame_tblSpil" Association="Self.FK_tblFrame_tblSpil">
+            <End Role="tblSpil" EntitySet="tblSpil" />
+            <End Role="tblFrame" EntitySet="tblFrame" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSpil_tblSpiller" Association="Self.FK_tblSpil_tblSpiller">
+            <End Role="tblSpiller" EntitySet="tblSpiller" />
+            <End Role="tblSpil" EntitySet="tblSpil" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NyKalleModelStoreContainer" CdmEntityContainer="NyKalleEntities">
+          <EntitySetMapping Name="tblFrame">
+            <EntityTypeMapping TypeName="NyKalleModel.tblFrame">
+              <MappingFragment StoreEntitySet="tblFrame">
+                <ScalarProperty Name="CN_FrameNr" ColumnName="CN_FrameNr" />
+                <ScalarProperty Name="CN_FramePK" ColumnName="CN_FramePK" />
+                <ScalarProperty Name="CN_FrameSpilPK" ColumnName="CN_FrameSpilPK" />
+                <ScalarProperty Name="CN_FrameScore" ColumnName="CN_FrameScore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSpil">
+            <EntityTypeMapping TypeName="NyKalleModel.tblSpil">
+              <MappingFragment StoreEntitySet="tblSpil">
+                <ScalarProperty Name="CN_SpilPK" ColumnName="CN_SpilPK" />
+                <ScalarProperty Name="CN_SpilSpillerPK" ColumnName="CN_SpilSpillerPK" />
+                <ScalarProperty Name="CN_SpilDato" ColumnName="CN_SpilDato" />
+                <ScalarProperty Name="CN_SpilSesson" ColumnName="CN_SpilSesson" />
+                <ScalarProperty Name="CN_SpilKalleKamel" ColumnName="CN_SpilKalleKamel" />
+                <ScalarProperty Name="CN_SpilPlacering" ColumnName="CN_SpilPlacering" />
+                <ScalarProperty Name="CN_SpilGennemsnit" ColumnName="CN_SpilGennemsnit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSpiller">
+            <EntityTypeMapping TypeName="NyKalleModel.tblSpiller">
+              <MappingFragment StoreEntitySet="tblSpiller">
+                <ScalarProperty Name="CN_SpillerPK" ColumnName="CN_SpillerPK" />
+                <ScalarProperty Name="CN_SpillerForNavn" ColumnName="CN_SpillerForNavn" />
+                <ScalarProperty Name="CN_SpillerEfterNavn" ColumnName="CN_SpillerEfterNavn" />
+                <ScalarProperty Name="CN_SpillerInit" ColumnName="CN_SpillerInit" />
+                <ScalarProperty Name="CN_SpillerOptDato" ColumnName="CN_SpillerOptDato" />
+                <ScalarProperty Name="CN_SpillerUdMeldDato" ColumnName="CN_SpillerUdMeldDato" />
+                <ScalarProperty Name="CN_SpillerFormand" ColumnName="CN_SpillerFormand" />
+                <ScalarProperty Name="CN_SpillerNastFormand" ColumnName="CN_SpillerNastFormand" />
+                <ScalarProperty Name="CN_SpillerKasser" ColumnName="CN_SpillerKasser" />
+                <ScalarProperty Name="CN_SpillerRevisor" ColumnName="CN_SpillerRevisor" />
+                <ScalarProperty Name="CN_SpillerSkemaAnsv" ColumnName="CN_SpillerSkemaAnsv" />
+                <ScalarProperty Name="CN_SpillerWebAnsv" ColumnName="CN_SpillerWebAnsv" />
+                <ScalarProperty Name="CN_EMail" ColumnName="CN_EMail" />
+                <ScalarProperty Name="CN_AktivMedl" ColumnName="CN_AktivMedl" />
+                <ScalarProperty Name="CN_PassivMedl" ColumnName="CN_PassivMedl" />
+                <ScalarProperty Name="CN_ProveMedl" ColumnName="CN_ProveMedl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
