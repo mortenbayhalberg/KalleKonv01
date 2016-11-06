@@ -15,10 +15,10 @@ namespace KalleKonv01
         //HouseKeeping
         static string NyKalleSQL;
 
-        static SqlConnection OldKalleSQLConnection = new SqlConnection("data source=LAPTOP-016\\SQLexpress;initial catalog=OldKalle;persist security info=True;user id=sa;password=10Xblank");
-        static SqlConnection NyKalleSQLConnection = new SqlConnection("data source=LAPTOP-016\\SQLexpress;initial catalog=NyKalle;persist security info=True;user id=sa;password=10Xblank");
+        static SqlConnection OldKalleSQLConnection = new SqlConnection("data source=Britta-pc\\SQLexpress;initial catalog=KalleKamel;persist security info=True;user id=sa;password=10Xblank");
+        static SqlConnection NyKalleSQLConnection = new SqlConnection("data source=Britta-pc\\SQLexpress;initial catalog=NyKalle;persist security info=True;user id=sa;password=10Xblank");
 
-       
+
         // ********************************************
         //Åbning af databaser
         //Der skal åbnes to database connections
@@ -492,9 +492,9 @@ namespace KalleKonv01
                 //objCmd = new SqlCommand(NyKalleSQL, NyKalleCon);
                 //objCmd.ExecuteNonQuery();
 
-                NyKalleSQL = "DROP TABLE [dbo].[tblSpil]";
-                SqlCommand objCmd = new SqlCommand(NyKalleSQL, NyKalleSQLConnection);
-                objCmd.ExecuteNonQuery();
+                    NyKalleSQL = "DROP TABLE [dbo].[tblSpil]";
+                    SqlCommand objCmd = new SqlCommand(NyKalleSQL, NyKalleSQLConnection);
+                    objCmd.ExecuteNonQuery();
 
                 NyKalleSQL = "SET ANSI_NULLS ON";
                 objCmd = new SqlCommand(NyKalleSQL, NyKalleSQLConnection);

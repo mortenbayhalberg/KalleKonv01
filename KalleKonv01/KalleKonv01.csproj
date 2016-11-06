@@ -69,6 +69,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NyKalleConnection.edmx</DependentUpon>
     </Compile>
+    <Compile Include="NyKalleConnection.Views.cs" />
     <Compile Include="OldKalleConnection.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
